@@ -1,0 +1,38 @@
+<html>
+    <head></head>
+    <body>
+        <script type= "text/javascript">
+            function words(){
+                this.wordArr = [];
+                this.addList = addList;
+                this.directShow = directShow;
+                this.reverseShow = reverseShow;
+            }
+
+            function addList(word){
+                this.wordArr.push(word);
+            }
+
+            function directShow(){
+                return this.wordArr.sort();
+            }
+
+            function reverseShow(){
+                return this.wordArr.reverse();
+            }
+
+            let wordList = new words();
+
+            wordList.addList("apple");
+            wordList.addList("cat");
+            wordList.addList("banana");
+
+            console.log(wordList.wordArr 
+                        + "\n\n" 
+                        + wordList.directShow()
+                        + "\n\n"
+                        + wordList.reverseShow()
+                        );
+        </script>
+    </body>
+</html>

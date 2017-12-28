@@ -1,0 +1,37 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <script type="text/javascript">
+            function weekTemp(){
+                this.dataStore = [];
+                this.add = add;
+                this.average = average;
+            }
+
+            function add(temp){
+                this.dataStore.push(temp);
+            }
+
+            function average(){
+                let total = 0;
+                for(let i = 0; i < this.dataStore.length; i++){
+                    total += this.dataStore[i];
+                }
+
+                return total/this.dataStore.length;
+            }
+
+            let week = new weekTemp();
+
+            week.add(52);
+            week.add(60);
+            week.add(80);
+            week.add(47);
+            week.add(63);
+
+            console.log(week.dataStore + "\n\n" + week.average());
+        </script>
+    </body>
+</html>

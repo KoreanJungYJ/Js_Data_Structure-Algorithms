@@ -1,0 +1,38 @@
+<html>
+    <head></head>
+    <body>
+        <script type= "text/javascript">
+            function grades(){
+                this.studentGrades = [];
+                this.add = add;
+                this.average = average;
+            }
+
+            function add(score){
+                this.studentGrades.push(score);
+            }
+
+            function average(){
+                let total = 0;
+                for(let i = 0; i < this.studentGrades.length; i++){
+                    total += this.studentGrades[i];
+                }
+
+                let average = 0;
+                average = (total / this.studentGrades.length).toFixed(2);
+
+                return average;
+            }
+
+            let students = new grades();
+            
+            students.add(100);
+            students.add(90.7);
+            students.add(89.2);
+            students.add(95.1);
+            students.add(87.4);
+
+            alert(students.average());
+        </script>
+    </body>
+</html>
