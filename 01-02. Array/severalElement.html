@@ -1,0 +1,38 @@
+<html>
+    <head></head>
+    <body>
+        <script type="text/javascript"> 
+            let arr = [
+                [1000, 2000, 300, 400],
+                [50, 70, 100, 300],
+                [80, 90, 500, 400]
+            ];
+            let total = 0, average = 0;
+
+            /*for(let i = 0; i < arr.length; i++) {
+                for(let j = 0; j < arr[i].length; j++) {
+                    total += arr[i][j];
+                }
+
+                average = total / arr[i].length;
+
+                console.log("합계: " + total + "\n" + "평균: " + average);
+
+                total = 0;
+                average = 0;
+            }*/
+
+            for(let i = 0; i < arr.length; i++) {
+                for(let j = 0; j < arr[i].length; j++){
+                    total += arr[0][j];
+                }
+                console.log("Checking Line 1: " + total);
+                average = total / arr[0].length;
+
+                console.log("Check Average: " + average);
+
+                break;
+            }
+        </script>
+    </body>
+</html>

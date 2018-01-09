@@ -1,0 +1,61 @@
+<html>
+    <head></head>
+    <body>
+        <script>
+            function weeklyTemps() {
+                this.monthData = [][];
+                this.monthAvg = monthAvg;
+                this.specificWeek = specificWeek;
+                this.allWeek = allWeek;
+            }
+
+            function monthAvg(selectMon) {
+                var total = 0, average = 0.0;
+
+                for(var i = 0; i < this.monthData[selectMon].length; i++) {
+                    total += this.monthData[selectMon][i];
+                }
+
+                average = total / this.monthData[selectMon].length;
+
+                console.log("선택 달 합 및 평균: " + total + " - " + average);
+            }
+
+            function specificWeek(selectMon, selectWeek) {
+                var total = 0, average = 0.0;
+
+                for(var i = 0; i < this.monthData.length; i++) {
+                    for(var j = 0; j < this.monthData[i].length; j++) {
+                        if(selectMon <= i && selectWeek <= j) {
+                            total += this.monthData[selectMon][selectWeek];
+                        }else{
+                            alert("Do not put over size of number!");
+                        }
+                    }
+
+                    average = total / this.monthData[selectMon].length;
+
+                    console.log("지정 주 총합 및 평균: " + total + " - " + average);
+                }
+            }
+
+            function allWeek() {
+                var total = 0, average = 0.0;
+                for(var i = 0; i < this.monthData.length; i++) {
+                    for(var j = 0; j < this.monthData[i].length; j++) {
+                        total += this.monthData[i][j];
+                    }
+
+                    average = total / this.monthData[i].length;
+
+                    console.log("모든 주 평균: " + average.toFixed(2));
+
+                    total = 0; 
+                    average = 0;
+                }
+            }
+        </script>
+    </body>
+</html>
+
+
