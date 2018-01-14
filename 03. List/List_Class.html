@@ -1,0 +1,178 @@
+<html>
+    <head></head>
+    <body>
+        <script type="text/javascript">
+            //생성자 함수 정의
+            function List() {
+                this.listSize = 0; //리스트 사이즈
+                this.pos = 0; //현재 위치
+                this.dataStore = []; //리스트 요소 저장할 빈 배열
+                this.clear = clear; //리스트 모든 요소 삭제
+                this.find = find; //리스트 요소 검색
+                this.toString = toString; //리스트 문자열로 변환
+                this.insert = insert; //기존 요소 위로 새 요소를 추가
+                this.append = append; //새 요소를 리스트의 끝에 추가
+                this.remove = remove; //리스트의 요소 삭제
+                this.front = front; //현재 위치를 리스트의 첫 번째 요소로 설정
+                this.end = end; //현재 위치를 리스트 마지막 요소로 설정
+                this.prev = prev; //현재 위치를 한 요소 뒤로 이동
+                this.next = next; //현재 위치를 한 요소 앞으로 이동
+                this.length = length; //리스트의 길이
+                this.currPos = currPos; //리스트의 현재 위치
+                this.moveTo = moveTo; //현재 위치를 지정된 위치로 이동
+                this.getElement = getElement; //현재 위치의 요소를 반환
+                this.contains = contains; //리스트에 특정 값이 있는지 판단
+            }
+
+
+            //Append - 리스트의 다음 가용 위치(= listSize 변수의 값)에 새 요소 추가
+            function append(element) {
+                this.dataStore[this.listSize++] = element;
+            }
+
+
+            //Find - 삭제할 요소 찾기
+            function find(element) {
+                for(var i = 0; i < this.dataStore.length; i++) {
+                    if(this.dataStore[i] == element) {
+                        return i;
+                    }
+                }
+
+                return -1;
+            }
+
+
+            //Remove - 요소를 삭제하고 나머지 배열 요소를 왼쪽으로 이동시켜 삭제된 자리 메우기
+            function remove(element) {
+                var foundAt = this.find(element);
+                if(foundAt > -1) {
+                    this.dataStore.splice(foundAt, 1);
+                    --this.listSize;
+
+                    return true;
+                }
+
+                return false;
+            }
+
+
+            //Length - 리스트의 요소 개수 반환
+            function length() {
+                return this.listSize;
+            }
+
+
+            //toString - 리스트 요소 확인 함수: 배열 객체 반환
+            function toString() {
+                return this.dataStore;
+            }
+
+
+            //현재까지의 리스트 구현 1차 테스트
+            var name1 = new List();
+            name1.append("First-Thing");
+            name1.append("Second-Thing");
+            name1.append("Third-Thing");
+
+            console.log(name1);
+
+            name1.remove("Second-Thing");
+            console.log(name1);
+
+
+            //Insert - 리스트에 요소 삽입
+            function insert(element, after) {
+                var insertPos = this.find(after);
+                
+                if(insertpos > -1) {
+                    this.dataStore.splice(insertPos + 1, 0, element);
+                    ++this.listSize;
+
+                    return true;
+                }
+
+                return false;
+            }
+
+
+            //Clear - 리스트의 모든 요소 삭제 및 초기화
+            function clear() {
+                delete this.dataStore;
+                this.dataStore.length = 0;
+                this.listSize = this.pos = 0;
+            }
+
+
+            //Contains - 리스트에 특정 값이 포함되어 있는지 판단
+            function contains(element) {
+                for(var i = 0; i < this.dataStore.length; i++) {
+                    if(this.dataStore[i] == element) {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+
+
+            //리스트 탐색
+            function front() {
+                this.pos = 0;
+            }
+
+            function end() {
+                this.pos = this.listSize - 1;
+            }
+
+            function prev(){
+                if(this.pos > 0) {
+                    --this.pos;
+                }
+            }
+
+            function next() {
+                if(this.pos < this.listSize - 1) {
+                    ++this.pos;
+                }
+            }
+
+            function currPos() {
+                return this.pos;
+            }
+
+            function moveTo(position) {
+                this.pos = position;
+            }
+
+            function getElement() {
+                //리스트 현재 요소 출력
+                return this.dataStore[this.pos];
+            }
+
+
+            //현재까지의 리스트 구현 2차 테스트
+            var name2 = new List();
+
+            name2.append("Apple");
+            name2.append("Banana");
+            name2.append("Cat");
+            name2.append("Doctor");
+            name2.append("Establish");
+            name2.append("Field");
+
+            console.log(name2);
+
+            name2.front();
+            console.log(name2.getElement());
+
+            name2.next();
+            console.log(name2.getElement());
+
+            name2.next();
+            name2.next();
+            name2.prev();
+            console.log(name2.getElement());
+        </script>
+    </body>
+</html>

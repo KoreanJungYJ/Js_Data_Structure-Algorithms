@@ -13,7 +13,11 @@
                 var total = 0, average = 0.0;
 
                 for(var i = 0; i < this.monthData[selectMon].length; i++) {
-                    total += this.monthData[selectMon][i];
+                    if(selectMon <= i){
+                        total += this.monthData[selectMon][i];
+                    }else{
+                        alert("Check your value!");
+                    }
                 }
 
                 average = total / this.monthData[selectMon].length;
