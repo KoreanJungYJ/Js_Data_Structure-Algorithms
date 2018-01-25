@@ -1,0 +1,144 @@
+<html><head></head><body><script type="text/javascript">
+    function List() {
+        this.listSize = 0;
+        this.dataArr = [];
+        this.append = append;
+        this.find = find;
+        this.remove = remove;
+        this.toString = toString;
+        this.insert = insert;
+        this.biggerInput = biggerInput;
+    }
+
+    function append(element) {
+        this.dataArr[this.listSize++] = element;
+    }
+
+    function find(element) {
+        for(var i = 0; i < this.dataArr.length; i++) {
+            if(this.dataArr[i] == element) {
+                console.log("Found Successfully!");
+                return i;
+            }
+
+            return -1;
+        }
+    }
+
+    function remove(element) {
+        var foundIndex = this.find(element);
+        if(foundIndex > -1) {
+            this.dataArr.splice(foundIndex, 1);
+            --this.listSize;
+            console.log("Removed Successfully!");
+
+            return true;
+        }
+
+        return false;
+    }
+
+    function insert(element, afterElement) {
+        var insertPos = this.find(afterElement);
+
+        if(insertPos > -1) {
+            this.dataArr.splice(insertPos + 1, 0, element);
+            ++this.listSize;
+            console.log("Inserted Successfully!");
+
+            return true;
+        }
+
+        return false;
+    }
+
+    function toString() {
+        return this.dataArr;
+    }
+
+    //큰 값만 삽입
+    function biggerInput(element, index) {
+        for(var i = 0; i < this.dataArr.length; i++) {
+            if(element > this.dataArr[i]) {
+                this.dataArr[this.listSize++] = element;
+
+                return true;
+            }
+
+            return false;
+        }
+    }
+
+    var list = new List();
+    list.append("나비");
+    console.log(list.toString());
+
+    //1, 2번
+    //큰 값 넣었을 때
+    console.log(list.biggerInput("다람쥐"));
+
+    //작은 값 넣었을 때
+    console.log(list.biggerInput("고양이"));
+
+    //결과
+    console.log(list.toString());
+
+
+
+    /*---------------------------Person 클래스 ----------------------------*/
+    var personList = new List();
+    var personList2 = new List();
+
+    var persons = [
+        {name: "Caden", gender: "male"},
+        {name: "Mina", gender: "female"},
+        {name: "Luri", gender: "female"},
+        {name: "Loza", gender: "male"},
+        {name: "Puha", gender: "male"},
+        {name: "Minsa", gender: "female"},
+        {name: "Lursin", gender: "female"},
+        {name: "Puhang", gender: "male"},
+        {name: "Minsia", gender: "female"},
+        {name: "Guhang", gender: "male"}
+    ];
+
+    function Person(name, gender) {
+        this.name = name;
+        this.gender = gender;
+    }
+
+    //기본 Person 리스트
+    for(var i in persons) {
+        var p = new Person(persons[i].name, persons[i].gender);
+        personList.append(p);
+    }
+
+    console.log(personList.toString());
+
+    //성별 구분
+    function checkGender(personList, persons) {
+        var maleArr = [];
+        var femaleArr = [];
+
+        for(var i in personList.dataArr) {
+            if(persons[i].gender == "male") {
+                maleArr.push(persons[i].name);
+            }else {
+                femaleArr.push(persons[i].name); 
+            }
+        }
+
+        console.log("- 남자 목록 -");
+        console.log(maleArr.join());
+
+        console.log("- 여자 목록 -");
+        console.log(femaleArr.join());
+
+        return true;
+    }
+    
+    console.log(checkGender(personList, persons));
+    
+
+    
+</script></body></html>

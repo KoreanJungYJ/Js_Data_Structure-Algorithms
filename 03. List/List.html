@@ -59,7 +59,7 @@
 
             //Length - 리스트의 요소 개수 반환
             function length() {
-                return this.listSize;
+                return -1;
             }
 
 
@@ -216,7 +216,17 @@
             }*/
 
             //console.log(" - 이용 가능한 영화 목록 - " + "\n" + displayList(movieList));
-            
+            var list = new List();
+            var arr = [
+                "te",
+                 "st",
+                  "is"];
+            for(var i in arr) {
+                list.append(arr[i]);
+            }
+            console.log(list.toString());
+            console.log(list.find("te"));
+            console.log(list.find("is"));
         </script>
     </body>
 </html>
