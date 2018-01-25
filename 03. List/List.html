@@ -67,19 +67,7 @@
             function toString() {
                 return this.dataStore;
             }
-
-
-            //현재까지의 리스트 구현 1차 테스트
-            var name1 = new List();
-            name1.append("First-Thing");
-            name1.append("Second-Thing");
-            name1.append("Third-Thing");
-
-            console.log(name1);
-
-            name1.remove("Second-Thing");
-            console.log(name1);
-
+            
 
             //Insert - 리스트에 요소 삽입
             function insert(element, after) {
@@ -151,28 +139,84 @@
             }
 
 
-            //현재까지의 리스트 구현 2차 테스트
-            var name2 = new List();
+            /*--------------------------------------------- 비디오 대여 시스템 ----------------------------------------------*/
+            //비디오 배열
+            var movieStr = 
+            'The Shawshank Redemption\n' +
+            'The Godfather\n' +
+            'The Godfather : Part II\n' +
+            'Pulp Fiction\n' +
+            'The Good. the Bad and the Ugly\n' +
+            '12 Angry Men\n' +
+            'Schindler\'s List\n' +
+            'The Dark Knight\n' +
+            'The Lord of the Rings : The Return of the King\n' +
+            'Fight Club\n' +
+            'Star Wars : Episode V - The Empire Strikes Back\n' +
+            'One Flew Over the Cuckoo\'s Nest\n' +
+            'The Lord of the Rings : The Fellowship of the Ring\n' +
+            'Inception\n' +
+            'Goodfellas\n' +
+            'Star Wars\n' +
+            'Seven Samurai\n' +
+            'The Matrix\n' +
+            'Forrest Gump\n' +
+            'City of God';
 
-            name2.append("Apple");
-            name2.append("Banana");
-            name2.append("Cat");
-            name2.append("Doctor");
-            name2.append("Establish");
-            name2.append("Field");
+            //파일에서 데이터 읽고 배열에 저장
+            function createArr(file) {
+                var fileArr = file.split('\n');
+                for(var i = 0; i < fileArr.length; i++) {
+                    fileArr[i] = fileArr[i].trim();
+                }
 
-            console.log(name2);
+                return fileArr;
+            }
 
-            name2.front();
-            console.log(name2.getElement());
+            //현재 판매 중인 영화 목록 출력 함수
+            function displayList(list) {
+                for(list.front(); list.currPos() < list.length(); list.next()) {
+                    if(list.getElement() instanceof Customer) {
+                        console.log(list.getElement()["name"] + ", " 
+                                  + list.getElement()["movie"]);
+                    }else {
+                        console.log(list.getElement());
+                    }
+                }
+            }
 
-            name2.next();
-            console.log(name2.getElement());
+            //고객 정보 저장 리스트
+            var customers = new List();
 
-            name2.next();
-            name2.next();
-            name2.prev();
-            console.log(name2.getElement());
+            //Customer 객체 담는 함수
+            function Customer(name, movie) {
+                this.name = name;
+                this.movie = movie;
+            }
+
+            //영화 이용 상태 확인 함수
+            function checkOut(name, movie, filmList, customerList) {
+                if(movieList.contains(movie)) {
+                    var cus = new Customer(name, movie);
+                    customerList.append(cus);
+                    filmList.remove(movie);
+                }else {
+                    console.log(movie + " is not available now.");
+                }
+            }
+
+
+            //실제 동작 테스트
+            /*var movies = createArr(movieStr);
+            var movieList = new List();
+            var customers = new List();
+            
+            for(var i = 0; i < movies.length; i++) {
+                movieList.append(movies[i]);
+            }*/
+
+            //console.log(" - 이용 가능한 영화 목록 - " + "\n" + displayList(movieList));
+            
         </script>
     </body>
 </html>
